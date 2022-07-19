@@ -4,10 +4,9 @@ import '../dummy_data.dart';
 import '../widgets/meal_item.dart';
 
 class CategoryMealsScreen extends StatelessWidget {
-  static const routeName = "category-meals";
-  // final String categoryID;
-  // final String cateogryTitle;
-  // const CategoryMealsScreen({Key? key, required this.categoryID, required this.cateogryTitle}) : super(key: key);
+  static const routeName = "/category-meals";
+
+  const CategoryMealsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,8 @@ class CategoryMealsScreen extends StatelessWidget {
               imageUrl: categoryMeals[index].imageUrl,
               duration: categoryMeals[index].duration,
               complexity: categoryMeals[index].complexity,
-              affordability: categoryMeals[index].affordability);
+              affordability: categoryMeals[index].affordability,
+              id: categoryMeals[index].id);
         },
         itemCount: categoryMeals.length,
       ),
