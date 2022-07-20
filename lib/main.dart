@@ -38,22 +38,21 @@ class MyApp extends StatelessWidget {
                 fontFamily: 'RobotoCondensed',
                 fontWeight: FontWeight.bold),
             titleLarge:
-                const TextStyle(fontSize: 36.0, fontFamily: 'RobotoCondensed')),
+                const TextStyle(fontSize: 24.0, fontFamily: 'RobotoCondensed')),
       ),
       // home: ,
       initialRoute: '/',
       routes: {
-        '/': (ctx) => CategoriesScreen(),
-        CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
-        MealDetailScreen.routeName: (ctx) => MealDetailScreen()
+        '/': (ctx) => const CategoriesScreen(),
+        CategoryMealsScreen.routeName: (ctx) => const CategoryMealsScreen(),
+        MealDetailScreen.routeName: (ctx) => const MealDetailScreen()
       },
       // onGenerateRoute: (settings) {
       //   print(settings.arguments);
       //   return MaterialPageRoute(builder: ((context) => CategoriesScreen()));
       // },
       onUnknownRoute: (settings) {
-        print("${settings.arguments} this is an error here");
-        return MaterialPageRoute(builder: ((context) => CategoriesScreen()));
+        return MaterialPageRoute(builder: ((context) => const CategoriesScreen()));
       },
     );
   }
