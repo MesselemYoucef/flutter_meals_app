@@ -19,16 +19,17 @@ class MealDetailScreen extends StatelessWidget {
 
   Widget buildContainer(Widget child) {
     return Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        margin: const EdgeInsets.all(10),
-        padding: const EdgeInsets.all(10),
-        height: 200,
-        width: 300,
-        child: child);
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
+      height: 200,
+      width: 300,
+      child: child,
+    );
   }
 
   @override
@@ -72,6 +73,7 @@ class MealDetailScreen extends StatelessWidget {
                     children: [
                       ListTile(
                         leading: CircleAvatar(
+                          backgroundColor: Colors.amber,
                           child: Text("# ${index + 1}"),
                         ),
                         title: Text(selectedMeal.steps[index]),
