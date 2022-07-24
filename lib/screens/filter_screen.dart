@@ -4,7 +4,9 @@ import '../widgets/main_drawer.dart';
 class FiltersScreen extends StatefulWidget {
   static String routeName = "/filters";
 
-  const FiltersScreen({Key? key}) : super(key: key);
+  final Function saveFilters;
+  final Map<String, bool> currentFilter;
+  const FiltersScreen({required this.saveFilters, required this.currentFilter});
 
   @override
   State<FiltersScreen> createState() => _FiltersScreenState();
@@ -15,6 +17,16 @@ class _FiltersScreenState extends State<FiltersScreen> {
   var _vegetarian = false;
   var _vegan = false;
   var _lactoseFree = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _glutenFree = widget.currentFilter['gluten']!;
+    _vegetarian = widget.currentFilter['lactose']!;
+    _vegan = widget.currentFilter['vegan']!;
+    _lactoseFree = widget.currentFilter['vegetarian']!;
+    super.initState();
+  }
 
   Widget _buildsSwitchListTile(String titleText, String description,
       bool currentValue, Function updateValue) {
@@ -32,6 +44,21 @@ class _FiltersScreenState extends State<FiltersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          actions: [
+            IconButton(
+              onPressed: () {
+                widget.saveFilters(
+                  {
+                    'gluten': _glutenFree,
+                    'lactose': _lactoseFree,
+                    'vegan': _vegan,
+                    'vegetarian': _vegetarian
+                  },
+                );
+              },
+              icon: const Icon(Icons.save),
+            )
+          ],
           title: const Text("Your FLilters"),
         ),
         drawer: const MainDrawer(),
@@ -46,15 +73,17 @@ class _FiltersScreenState extends State<FiltersScreen> {
               child: ListView(
                 children: [
                   _buildsSwitchListTile(
-                      "Gluten-Free", "Only Includes Gluten Free Products", _glutenFree,
-                      (newValue) {
+                      "Gluten-Free",
+                      "Only Includes Gluten Free Products",
+                      _glutenFree, (newValue) {
                     setState(() {
                       _glutenFree = newValue;
                     });
                   }),
                   _buildsSwitchListTile(
-                      "Vegetarian", "Only Includes Vegetarian Products", _vegetarian,
-                      (newValue) {
+                      "Vegetarian",
+                      "Only Includes Vegetarian Products",
+                      _vegetarian, (newValue) {
                     setState(() {
                       _vegetarian = newValue;
                     });
@@ -67,8 +96,9 @@ class _FiltersScreenState extends State<FiltersScreen> {
                     });
                   }),
                   _buildsSwitchListTile(
-                      "Lactose-Free", "Only Includes Lactose Free Products", _lactoseFree,
-                      (newValue) {
+                      "Lactose-Free",
+                      "Only Includes Lactose Free Products",
+                      _lactoseFree, (newValue) {
                     setState(() {
                       _lactoseFree = newValue;
                     });
